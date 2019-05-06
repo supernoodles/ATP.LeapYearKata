@@ -7,30 +7,28 @@
     [TestFixture]
     public class LeapYearShould
     {
-        [Test]
-        public void ReturnTrue_Given1996()
+        [TestCase(1996)]
+        [TestCase(1992)]
+        [TestCase(1988)]
+        [TestCase(2000)]
+        [TestCase(1200)]
+        [TestCase(1600)]
+        public void ReturnTrue_GivenLeapYear(int year)
         {
             new LeapYear()
-                .IsLeapYear(1996)
+                .IsLeapYear(year)
                 .Should().BeTrue();
         }
 
-        [Test]
-        public void ReturnFalse_Given2001()
+        [TestCase(2001)]
+        [TestCase(2003)]
+        [TestCase(1900)]
+        [TestCase(1700)]
+        public void ReturnFalse_GivenCommonYear(int year)
         {
             new LeapYear()
-                .IsLeapYear(2001)
+                .IsLeapYear(year)
                 .Should().BeFalse();
-        }
-
-        [Test]
-        public void ReturnTrue_Given1992()
-        {
-            var leapYear = new LeapYear();
-
-            var result = leapYear.IsLeapYear(1992);
-
-            result.Should().BeTrue();
         }
     }
 }
