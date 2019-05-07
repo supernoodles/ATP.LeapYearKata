@@ -1,9 +1,18 @@
 ﻿namespace LeapYearKata.Source
 {
-
-    public class LeapYear
+    public sealed class LeapYear
     {
         public bool IsLeapYear(int year) =>
-            year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+            year.IsDivisibleBy(4) && 
+            (!year.IsDivisibleBy(100) || 
+              year.IsDivisibleBy(400));
+    }
+
+    internal static class YearsExtensions
+    {
+        internal static bool IsDivisibleBy(this int numerator, int divisor)
+        {
+            return numerator % divisor == 0;
+        }
     }
 }
